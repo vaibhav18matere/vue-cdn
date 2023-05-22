@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css">
-    <title>Vue</title>
-    <style>
-     .box-container{
-          background-color: burlywood;
-          height: 50px;
-          width: 50px;
-     }
-     .box-container2{
-          background-color: gray;
-          height: 50px;
-          width: 50px;
-     }
-    </style>
-  </head>
-  <body>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <div id="app">
-{{ greeting }}
-<input v-model="greeting" type="text" />
-<div v-if="isVisible" class="box-container"> </div>
-<!-- mostly used in Loaders -->
-<br/>
-<div v-show="isVisible" class="box-container2"> </div>
-<!-- To add/remove from DOM  ex. Toggle -->
-</div>
+<head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="./styles.css">
+     <title>Vue</title>
+     <style>
+          .box-container {
+               background-color: burlywood;
+               height: 50px;
+               width: 50px;
+          }
 
-    </div>
+          .box-container2 {
+               background-color: gray;
+               height: 50px;
+               width: 50px;
+          }
+     </style>
+</head>
 
-    <script>
-     //  const { createApp } = Vue;
+<body>
+     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-      Vue.createApp({
-        data() {
-          return {
-            greeting: "Hello !",
-            isVisible: false,
-          };
-        },
-      }).mount("#app");
-    </script>
-  </body>
+     <div id="app">
+          {{ greeting }}
+          <input v-model="greeting" type="text" />
+          <div v-if="isVisible" class="box-container"> </div>
+          <!-- mostly used in Loaders -->
+          <br />
+          <div v-show="isVisible" class="box-container2"> </div>
+          <!-- To add/remove from DOM  ex. Toggle -->
+     </div>
+
+     </div>
+
+     <script>
+          //  const { createApp } = Vue;
+
+          Vue.createApp({
+               data() {
+                    return {
+                         greeting: "Hello !",
+                         isVisible: false,
+                    };
+               },
+          }).mount("#app");
+     </script>
+</body>
+
 </html>
