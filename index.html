@@ -17,11 +17,19 @@
           .box.two {
                background-color: green;
           }
-          .box.three{
+
+          .box.three {
                background-color: red;
           }
-          [v-cloak]{
+
+          [v-cloak] {
                display: none;
+          }
+
+          input {
+               margin: 10px;
+               padding: 5px;
+               display: block;
           }
      </style>
 </head>
@@ -37,7 +45,8 @@
           <div v-else class="box three"></div>
           <button v-on:click="isVisible=true">Change Color</button>
           <button @click="isVisible=!isVisible">Toggle Color</button>
-          <button @click="toggleBox" >Red Color Toggle</button>
+          <button @click="toggleBox">Red Color Toggle</button>
+          <login-form />
      </div>
 
      </div>
@@ -45,23 +54,48 @@
      <script>
           //  const { createApp } = Vue;
 
-          Vue.createApp({
+          let app = Vue.createApp({
                data() {
                     return {
                          greeting: "Hello !",
                          isVisible: false,
-                         isVisible2:true,
+                         isVisible2: true,
                     };
                },
-               methods:{
-                    toggleBox(){
-                         this.isVisible2=!this.isVisible2
+               methods: {
+                    toggleBox() {
+                         this.isVisible2 = !this.isVisible2
                     },
-                    greet(){
+                    greet() {
                          alert("input event in vue js using @keyup.enter");
                     }
+               },
+          })
+
+          app.component('login-form', {
+               template: `
+               <form @submit.prevent="handleSubmit">
+                    <h2>{{title}}</h2>
+                    <input type="email" v-model="email" />
+                    <input type="password" v-model="password" />
+                    <button>Log In</button>
+               </form>
+               `,
+               data() {
+                    return {
+                         title: "Login Form",
+                         email: "",
+                         password: ""
+                    }
+               },
+               methods: {
+                    handleSubmit() {
+                         console.log(this.title, this.email, this.password)
+                    }
                }
-          }).mount("#app");
+          })
+
+          app.mount("#app");
      </script>
 </body>
 
