@@ -20,13 +20,16 @@
           .box.three{
                background-color: red;
           }
+          [v-cloak]{
+               display: none;
+          }
      </style>
 </head>
 
 <body>
      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-     <div id="app">
+     <div id="app" v-cloak>
           {{ greeting }}
           <input v-model="greeting" type="text" />
           <div v-if="isVisible" class="box"> </div>
