@@ -35,6 +35,8 @@
           <div v-if="isVisible" class="box"> </div>
           <div v-else-if="isVisible2" class="box two"></div>
           <div v-else class="box three"></div>
+          <button v-on:click="isVisible=true">Change Color</button>
+          <button @click="isVisible=!isVisible">Toggle Color</button>
      </div>
 
      </div>
