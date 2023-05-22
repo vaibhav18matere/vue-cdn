@@ -37,6 +37,7 @@
           <div v-else class="box three"></div>
           <button v-on:click="isVisible=true">Change Color</button>
           <button @click="isVisible=!isVisible">Toggle Color</button>
+          <button @click="toggleBox" >Red Color Toggle</button>
      </div>
 
      </div>
@@ -52,6 +53,11 @@
                          isVisible2:true,
                     };
                },
+               methods:{
+                    toggleBox(){
+                         this.isVisible2=!this.isVisible2
+                    }
+               }
           }).mount("#app");
      </script>
 </body>
