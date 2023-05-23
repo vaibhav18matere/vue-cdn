@@ -22,6 +22,12 @@
                background-color: red;
           }
 
+          .lsBox {
+               background-color: purple;
+               height: 50px;
+               width: 50px;
+          }
+
           [v-cloak] {
                display: none;
           }
@@ -61,6 +67,9 @@
           </div>
           <div class="container-lifecycle-methods">
                <h3>{{message}}</h3>
+               <button @click="lsBtnToggle">toggle purple button</button>
+               <!-- custom component box -->
+               <test-box v-if="lsBoxVisible" />
           </div>
           <login-form class="login-form" />
      </div>
@@ -75,7 +84,8 @@
                          greeting: "Hello !",
                          isVisible: false,
                          isVisible2: true,
-                         message: "Component lifecycle methods"
+                         message: "Component lifecycle methods",
+                         lsBoxVisible: true,
                     };
                },
                methods: {
@@ -84,8 +94,17 @@
                     },
                     greet() {
                          alert("input event in vue js using @keyup.enter");
+                    },
+                    lsBtnToggle() {
+                         this.lsBoxVisible = !this.lsBoxVisible
                     }
                },
+          })
+
+          app.component('test-box', {
+               template: `
+               <div class="lsBox"></div>
+               `
           })
 
           app.component('login-form', {
@@ -135,29 +154,9 @@
                          console.log(this.inputArr[0].value, this.inputArr[1].value)
                     }
                }
-          })
-          app.component('login-input', {
-               template: `
-               <label>
-                    {{label}}
-                    <input :type="type" v-model="inputValue"/>
-                    </label>
-               `,
-               props: ['label', 'modelValue', 'type'],
-               computed: {
-                    inputValue: {
-                         get() {
-                              return this.modelValue;
-                         },
-                         set(value) {
-                              console.log(value);
-                              this.$emit('update:modelValue', value);
-                         },
-                    }
-               }
-          })
+          }) |
 
-          app.mount("#app");
+               app.mount("#app");
      </script>
 </body>
 
