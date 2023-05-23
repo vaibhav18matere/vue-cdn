@@ -76,16 +76,19 @@
                template: `
                <form @submit.prevent="handleSubmit">
                     <h2>{{title}}</h2>
-                    <input type="email" v-model="email" />
-                    <input type="password" v-model="password" />
+                    <login-input type="email" :label="emailLabel" />
+                    <login-input type="password" :label="passwordLabel" />
                     <button>Log In</button>
                </form>
                `,
+               components: ['login-input'],
                data() {
                     return {
                          title: "Login Form",
                          email: "",
-                         password: ""
+                         password: "",
+                         emailLabel: "enter email",
+                         passwordLabel: "enter password",
                     }
                },
                methods: {
@@ -94,7 +97,15 @@
                     }
                }
           })
-
+          app.component('login-input', {
+               template: `
+               <label>
+                    {{label}}
+                    <input type="text" />
+                    </label>
+               `,
+               props: ['label']
+          })
           app.mount("#app");
      </script>
 </body>
