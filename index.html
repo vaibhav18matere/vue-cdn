@@ -76,8 +76,8 @@
                template: `
                <form @submit.prevent="handleSubmit">
                     <h2>{{title}}</h2>
-                    <login-input type="email" :label="emailLabel" />
-                    <login-input type="password" :label="passwordLabel" />
+                    <login-input v-model="email" :label="emailLabel" />
+                    <login-input v-model="password" :label="passwordLabel" />
                     <button>Log In</button>
                </form>
                `,
@@ -93,7 +93,7 @@
                },
                methods: {
                     handleSubmit() {
-                         console.log(this.title, this.email, this.password)
+                         console.log(this.email, this.password)
                     }
                }
           })
@@ -101,10 +101,21 @@
                template: `
                <label>
                     {{label}}
-                    <input type="text" />
+                    <input type="text" v-model="inputValue"/>
                     </label>
                `,
-               props: ['label']
+               props: ['label', 'modelValue'],
+               computed: {
+                    inputValue: {
+                         get() {
+                              return this.modelValue;
+                         },
+                         set(value) {
+                              console.log(value);
+                              this.$emit('update:modelValue', value);
+                         },
+                    }
+               }
           })
           app.mount("#app");
      </script>
