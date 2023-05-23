@@ -77,8 +77,13 @@
                <form @submit.prevent="handleSubmit">
                     <h2>{{title}}</h2>
                     <p v-for="(sub,index) in academicSubs" :key="sub" >{{index + sub}}</p>
-                    <login-input v-model="email" :label="emailLabel" />
-                    <login-input v-model="password" :label="passwordLabel" />
+                    <login-input 
+                    v-for="(inp, i) in inputArr"
+                    :key="i"
+                    v-model="inp.value" 
+                    :label="inp.label"
+                    :type="inp.type"
+                    />
                     <button>Log In</button>
                </form>
                `,
@@ -91,6 +96,18 @@
                               'history',
                               'science',
                          ],
+                         inputArr: [
+                              {
+                                   label: "Email",
+                                   value: "",
+                                   type: "email"
+                              },
+                              {
+                                   label: "Password",
+                                   value: "",
+                                   type: "password"
+                              },
+                         ],
                          email: "",
                          password: "",
                          emailLabel: "enter email",
@@ -99,7 +116,7 @@
                },
                methods: {
                     handleSubmit() {
-                         console.log(this.email, this.password)
+                         console.log(this.inputArr[0].value, this.inputArr[1].value)
                     }
                }
           })
@@ -107,10 +124,10 @@
                template: `
                <label>
                     {{label}}
-                    <input type="text" v-model="inputValue"/>
+                    <input :type="type" v-model="inputValue"/>
                     </label>
                `,
-               props: ['label', 'modelValue'],
+               props: ['label', 'modelValue', 'type'],
                computed: {
                     inputValue: {
                          get() {
