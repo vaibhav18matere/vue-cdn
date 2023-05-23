@@ -76,6 +76,7 @@
                template: `
                <form @submit.prevent="handleSubmit">
                     <h2>{{title}}</h2>
+                    <p v-for="(sub,index) in academicSubs" :key="sub" >{{index + sub}}</p>
                     <login-input v-model="email" :label="emailLabel" />
                     <login-input v-model="password" :label="passwordLabel" />
                     <button>Log In</button>
@@ -85,6 +86,11 @@
                data() {
                     return {
                          title: "Login Form",
+                         academicSubs: [
+                              'english',
+                              'history',
+                              'science',
+                         ],
                          email: "",
                          password: "",
                          emailLabel: "enter email",
