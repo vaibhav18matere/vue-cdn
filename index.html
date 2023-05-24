@@ -99,12 +99,28 @@
                          this.lsBoxVisible = !this.lsBoxVisible
                     }
                },
+               updated(){
+                    console.log('updated');   
+               }
+               //updated runs every single time when data changes
           })
 
           app.component('test-box', {
                template: `
                <div class="lsBox"></div>
-               `
+               `,
+               created(){
+                    console.log('created');
+                    
+               },
+               mounted(){
+                    console.log('mounted');
+                    
+               },
+               unmounted(){
+                    console.log('unmounred lifecycle ');
+                    
+               }
           })
 
           app.component('login-form', {
@@ -154,7 +170,7 @@
                          console.log(this.inputArr[0].value, this.inputArr[1].value)
                     }
                }
-          }) |
+          })
 
                app.mount("#app");
      </script>
